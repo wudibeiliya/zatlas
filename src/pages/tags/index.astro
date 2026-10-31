@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPublishedPosts, getTags } from '../../utils/posts';
+
+const posts = await getPublishedPosts();
+const tags = getTags(posts);
+---
+
+<BaseLayout title="标签" description="按标签浏览 ZAtlas 的文章。">
+  <h1 class="page-title">标签</h1>
+  <hr class="rule" />
+  <ul class="tag-cloud">
+    {
+      tags.map(({ tag, count }) => (
+        <li>
+          <a href={`/tags/${encodeURIComponent(tag)}/`}>
+            {tag} <span class="count">{count}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

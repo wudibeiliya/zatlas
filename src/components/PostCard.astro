@@ -1,0 +1,24 @@
+---
+import { formatDate, readingTime, type Post } from '../utils/posts';
+import TagList from './TagList.astro';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, tags } = post.data;
+---
+
+<li class="post-item">
+  <div class="post-meta">
+    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+    <span aria-hidden="true">·</span>
+    <span>{readingTime(post.body)} 分钟</span>
+  </div>
+  <h2 class="post-title">
+    <a href={`/blog/${post.id}/`}>{title}</a>
+  </h2>
+  <p class="post-desc">{description}</p>
+  <TagList tags={tags} />
+</li>

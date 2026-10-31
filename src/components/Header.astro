@@ -1,0 +1,31 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const path = Astro.url.pathname;
+const links = [
+  { href: '/', label: '文章' },
+  { href: '/tags/', label: '标签' },
+  { href: '/archive/', label: '归档' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return path === '/' || path.startsWith('/blog');
+  return path.startsWith(href);
+}
+---
+
+<header class="site-header wrap">
+  <div class="header-top">
+    <a class="brand" href="/">ZAtlas</a>
+    <ThemeToggle />
+  </div>
+  <nav class="nav" aria-label="主导航">
+    {
+      links.map((link) => (
+        <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>
