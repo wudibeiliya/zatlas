@@ -4,7 +4,7 @@ import { getPublishedPosts } from '../utils/posts';
 
 export async function GET(context: APIContext) {
   const posts = await getPublishedPosts();
-  const site = context.site ?? new URL('https://zatlas-site.vercel.app');
+  const site = context.site ?? new URL('https://zatlas.vercel.app');
 
   return rss({
     title: 'ZAtlas',

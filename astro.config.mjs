@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://zatlas-site.vercel.app',
+  site: 'https://zatlas.vercel.app',
   output: 'static',
   integrations: [sitemap()],
   markdown: {
